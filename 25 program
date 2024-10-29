@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+int main() {
+    int n, i;
+    
+    // Get the count from the user
+    printf("Enter the number of elements in the array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+    
+    // Populate the array
+    printf("Enter the elements of the array:\n");
+    for(i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    // Display the count of elements
+    printf("The number of elements in the array is: %d\n", n);
+    
+    return 0;
+}
