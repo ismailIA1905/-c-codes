@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+int main() {
+    int arr[] = {10, 20, 30, 40, 50};  // An array of integers
+    int *ptr = arr;  // Pointer pointing to the first element of the array
+
+    printf("Array elements using pointer arithmetic:\n");
+
+    // Using pointer arithmetic to access elements of the array
+    printf("First element: %d\n", *ptr);  // Dereferencing pointer to get the first element
+    printf("Second element: %d\n", *(ptr + 1));  // Pointer arithmetic to move to the second element
+    printf("Third element: %d\n", *(ptr + 2));  // Pointer arithmetic to move to the third element
+    printf("Fourth element: %d\n", *(ptr + 3));  // Pointer arithmetic to move to the fourth element
+    printf("Fifth element: %d\n", *(ptr + 4));  // Pointer arithmetic to move to the fifth element
+
+    // Demonstrating pointer increment and decrement
+    printf("\nDemonstrating pointer increment and decrement:\n");
+    printf("Current element (first): %d\n", *ptr);
+    ptr++;  // Move the pointer to the next element (increment)
+    printf("After incrementing, second element: %d\n", *ptr);
+    ptr--;  // Move the pointer back to the first element (decrement)
+    printf("After decrementing, back to first element: %d\n", *ptr);
+
+    // Demonstrating pointer difference
+    printf("\nDemonstrating pointer difference:\n");
+    int *ptr1 = arr;  // Pointer to the first element
+    int *ptr2 = arr + 4;  // Pointer to the fifth element
+    printf("Pointer difference: %ld\n", ptr2 - ptr1);  // Calculate difference in positions
+
+    return 0;
+}
