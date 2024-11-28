@@ -1,0 +1,60 @@
+#include <stdio.h>
+
+#define MAX 10  // Maximum size of the matrix
+
+// Function to check if a matrix is symmetric
+int isSymmetric(int matrix[MAX][MAX], int n) {
+    // Check for symmetry by comparing matrix[i][j] and matrix[j][i]
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (matrix[i][j] != matrix[j][i]) {
+                return 0;  // If any element does not match, it's not symmetric
+            }
+        }
+    }
+    return 1;  // The matrix is symmetric
+}
+
+// Function to read a matrix
+void readMatrix(int matrix[MAX][MAX], int n) {
+    printf("Enter elements of the matrix:\n");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+}
+
+// Function to print a matrix
+void printMatrix(int matrix[MAX][MAX], int n) {
+    printf("Matrix:\n");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            printf("%d ", matrix[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int matrix[MAX][MAX], n;
+
+    // Read the size of the matrix (n x n)
+    printf("Enter the size of the matrix (n x n): ");
+    scanf("%d", &n);
+
+    // Read matrix elements
+    readMatrix(matrix, n);
+
+    // Display the matrix
+    printMatrix(matrix, n);
+
+    // Check if the matrix is symmetric
+    if (isSymmetric(matrix, n)) {
+        printf("The matrix is symmetric.\n");
+    } else {
+        printf("The matrix is not symmetric.\n");
+    }
+
+    return 0;
+}
