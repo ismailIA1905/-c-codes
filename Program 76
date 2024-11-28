@@ -1,0 +1,29 @@
+#include <stdio.h>
+
+int main() {
+    FILE *file;
+    char content[256];
+
+    // Open the file in append mode ("a")
+    file = fopen("example.txt", "a");
+
+    // Check if the file was opened successfully
+    if (file == NULL) {
+        printf("Could not open the file for appending.\n");
+        return 1;
+    }
+
+    // Prompt user for the content to append
+    printf("Enter the content to append to the file: ");
+    fgets(content, sizeof(content), stdin);  // Read input from user
+
+    // Append the content to the file
+    fputs(content, file);
+
+    // Close the file
+    fclose(file);
+
+    printf("Content successfully appended to the file.\n");
+
+    return 0;
+}
