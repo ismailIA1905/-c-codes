@@ -1,0 +1,45 @@
+#include <stdio.h>
+
+// Function to generate and print the first n Fibonacci numbers
+void generateFibonacci(int n) {
+    long long first = 0, second = 1, next;
+
+    // Handle the case for n = 1
+    if (n >= 1) {
+        printf("Fibonacci series: %lld", first);
+    }
+    
+    // Handle the case for n = 2
+    if (n >= 2) {
+        printf(", %lld", second);
+    }
+
+    // Generate Fibonacci numbers starting from the third one
+    for (int i = 3; i <= n; i++) {
+        next = first + second;
+        printf(", %lld", next);
+
+        // Update the previous two numbers for the next iteration
+        first = second;
+        second = next;
+    }
+    printf("\n");
+}
+
+int main() {
+    int n;
+
+    // Read the number of Fibonacci numbers to generate
+    printf("Enter the number of Fibonacci numbers to generate: ");
+    scanf("%d", &n);
+
+    // Validate the input
+    if (n <= 0) {
+        printf("Please enter a positive integer greater than 0.\n");
+    } else {
+        // Generate and display the Fibonacci series
+        generateFibonacci(n);
+    }
+
+    return 0;
+}
