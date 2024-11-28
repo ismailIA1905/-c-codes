@@ -1,0 +1,37 @@
+#include <stdio.h>
+
+// Function to calculate the sum of elements in an array using pointers
+int sumArray(int *arr, int n) {
+    int sum = 0;
+    
+    // Traverse the array using pointer arithmetic and accumulate the sum
+    for (int i = 0; i < n; i++) {
+        sum += *(arr + i);  // Access each element using pointer dereferencing
+    }
+    
+    return sum;
+}
+
+int main() {
+    int n;
+
+    // Input the number of elements in the array
+    printf("Enter the number of elements in the array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+
+    // Input the elements of the array
+    printf("Enter %d elements:\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    // Calculate the sum of the array elements using the sumArray function
+    int sum = sumArray(arr, n);
+
+    // Output the sum
+    printf("The sum of the elements in the array is: %d\n", sum);
+
+    return 0;
+}
