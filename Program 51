@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+void updateValue(int *p) {
+    *p = *p + 10; // Increment the value pointed to by p
+}
+
+int main() {
+    int num = 5;
+    int *ptr;
+
+    // Point ptr to the address of num
+    ptr = &num;
+
+    printf("Value of num: %d\n", num); // Before modification
+    printf("Address of num: %p\n", (void*)&num);
+    printf("Value of ptr (address stored in ptr): %p\n", (void*)ptr);
+    printf("Value at address ptr is pointing to: %d\n", *ptr); // Dereferencing the pointer
+
+    // Modify the value using the pointer
+    updateValue(ptr);
+
+    printf("\nAfter updating the value using the pointer:\n");
+    printf("Value of num: %d\n", num); // After modification
+    printf("Value at address ptr is pointing to: %d\n", *ptr);
+
+    return 0;
+}
