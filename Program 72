@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+int main() {
+    FILE *file;
+
+    // Open the file in write mode ("w")
+    file = fopen("output.txt", "w");
+
+    // Check if the file was opened successfully
+    if (file == NULL) {
+        printf("Could not open the file for writing.\n");
+        return 1;
+    }
+
+    // Write text to the file
+    fprintf(file, "Hello, this is a text file written by a C program.\n");
+    fprintf(file, "This is the second line of the file.\n");
+    fprintf(file, "Writing data is simple in C using file handling.\n");
+
+    // Close the file
+    fclose(file);
+
+    printf("Data successfully written to 'output.txt'.\n");
+
+    return 0;
+}
