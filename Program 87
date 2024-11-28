@@ -1,0 +1,50 @@
+#include <stdio.h>
+
+#define MAX 10  // Maximum size of the matrix
+
+void transposeMatrix(int mat[MAX][MAX], int trans[MAX][MAX], int rows, int cols) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            trans[j][i] = mat[i][j];  // Swap rows and columns
+        }
+    }
+}
+
+void printMatrix(int mat[MAX][MAX], int rows, int cols) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            printf("%d ", mat[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int mat[MAX][MAX], trans[MAX][MAX];
+    int rows, cols;
+
+    // Read matrix dimensions
+    printf("Enter number of rows and columns: ");
+    scanf("%d %d", &rows, &cols);
+
+    // Read matrix elements
+    printf("Enter elements of the matrix:\n");
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            scanf("%d", &mat[i][j]);
+        }
+    }
+
+    // Find the transpose of the matrix
+    transposeMatrix(mat, trans, rows, cols);
+
+    // Display the original matrix
+    printf("Original Matrix:\n");
+    printMatrix(mat, rows, cols);
+
+    // Display the transpose matrix
+    printf("Transpose Matrix:\n");
+    printMatrix(trans, cols, rows);
+
+    return 0;
+}
