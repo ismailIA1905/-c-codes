@@ -1,0 +1,137 @@
+#include <stdio.h>
+
+#define MAX 10  // Maximum size of the matrix
+
+// Function to find the determinant of a matrix
+int determinant(int matrix[MAX][MAX], int n) {
+    int det = 0;
+    
+    // Base case: If the matrix is 1x1, return the element itself
+    if (n == 1) {
+        return matrix[0][0];
+    }
+
+    // Base case: If the matrix is 2x2, return the determinant (ad - bc)
+    if (n == 2) {
+        return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
+    }
+
+    // For larger matrices, use recursion to find the determinant
+    int temp[MAX][MAX];  // Temporary matrix to store the cofactors
+    for (int p = 0; p < n; p++) {
+        int h = 0;  // To store the row index of the cofactor matrix
+        int k = 0;  // To store the column index of the cofactor matrix
+
+        // Get the cofactor of matrix[0][p]
+        for (int i = 1; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (j != p) {
+                    temp[h][k++] = matrix[i][j];
+                }
+            }
+            h++;
+            k = 0;
+        }
+
+        // Recursively calculate the determinant of the cofactor matrix
+        det += (p % 2 == 0 ? 1 : -1) * matrix[0][p] * determinant(temp, n - 1);
+    }
+
+    return det;
+}
+
+// Function to get the cofactor matrix
+void getCofactor(int matrix[MAX][MAX], int temp[MAX][MAX], int row, int col, int n) {
+    int i = 0, j = 0;
+    
+    // Loop through the matrix and create a cofactor matrix
+    for (int r = 0; r < n; r++) {
+        for (int c = 0; c < n; c++) {
+            if (r != row && c != col) {
+                temp[i][j++] = matrix[r][c];
+                if (j == n - 1) {
+                    j = 0;
+                    i++;
+                }
+            }
+        }
+    }
+}
+
+// Function to find the adjugate (adjoint) matrix
+void adjugate(int matrix[MAX][MAX], int adj[MAX][MAX], int n) {
+    int temp[MAX][MAX];
+    
+    // Cofactor matrix for each element
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            // Find the cofactor of matrix[i][j]
+            getCofactor(matrix, temp, i, j, n);
+
+            // Sign of the cofactor is (+/-) based on position
+            adj[j][i] = ((i + j) % 2 == 0 ? 1 : -1) * determinant(temp, n - 1);  // Transpose the cofactor matrix
+        }
+    }
+}
+
+// Function to find the inverse of a matrix
+int inverse(int matrix[MAX][MAX], float inverseMatrix[MAX][MAX], int n) {
+    int det = determinant(matrix, n);
+
+    // If determinant is 0, the matrix is singular and doesn't have an inverse
+    if (det == 0) {
+        printf("Inverse does not exist as determinant is 0.\n");
+        return 0;
+    }
+
+    // Find adjugate (adjoint) matrix
+    int adj[MAX][MAX];
+    adjugate(matrix, adj, n);
+
+    // Calculate the inverse using the formula: inverse = adjugate / determinant
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            inverseMatrix[i][j] = (float)adj[i][j] / det;
+        }
+    }
+
+    return 1;
+}
+
+// Function to print a matrix
+void printMatrix(float matrix[MAX][MAX], int n) {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            printf("%0.2f ", matrix[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int matrix[MAX][MAX], n;
+
+    // Read the size of the matrix (n x n)
+    printf("Enter the size of the matrix (n x n): ");
+    scanf("%d", &n);
+
+    // Read matrix elements
+    printf("Enter elements of the matrix:\n");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+
+    // Find the inverse of the matrix
+    float inverseMatrix[MAX][MAX];
+    int result = inverse(matrix, inverseMatrix, n);
+
+    if (result) {
+        // Display the inverse matrix
+        printf("Inverse of the matrix is:\n");
+        printMatrix(inverseMatrix, n);
+    }
+
+    return 0;
+}
