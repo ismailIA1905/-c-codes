@@ -1,0 +1,43 @@
+#include <stdio.h>
+
+void insertionSort(int arr[], int size) {
+    int i, key, j;
+
+    // Loop through the array starting from the second element
+    for (i = 1; i < size; i++) {
+        key = arr[i];  // The element to be inserted
+        j = i - 1;
+
+        // Move elements of arr[0..i-1], that are greater than key, to one position ahead
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];  // Shift element to the right
+            j = j - 1;
+        }
+
+        // Insert the key in the correct position
+        arr[j + 1] = key;
+    }
+}
+
+void printArray(int arr[], int size) {
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    int arr[] = {64, 34, 25, 12, 22, 11, 90};  // Example array
+    int size = sizeof(arr) / sizeof(arr[0]);
+
+    printf("Original array: \n");
+    printArray(arr, size);
+
+    // Call insertionSort to sort the array
+    insertionSort(arr, size);
+
+    printf("Sorted array: \n");
+    printArray(arr, size);
+
+    return 0;
+}
