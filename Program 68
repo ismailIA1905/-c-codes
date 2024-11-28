@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <string.h>
+
+// Define a structure
+struct Person {
+    char name[50];
+    int age;
+};
+
+// Function to compare two Person structures by age
+int compare(const void *a, const void *b) {
+    struct Person *personA = (struct Person *)a;
+    struct Person *personB = (struct Person *)b;
+    return personA->age - personB->age;  // Ascending order based on age
+}
+
+int main() {
+    // Create an array of structures
+    struct Person people[] = {
+        {"Alice", 30},
+        {"Bob", 25},
+        {"Charlie", 35},
+        {"David", 20},
+        {"Eve", 28}
+    };
+    int n = sizeof(people) / sizeof(people[0]);
+
+    // Print the array before sorting
+    printf("Before sorting:\n");
+    for (int i = 0; i < n; i++) {
+        printf("Name: %s, Age: %d\n", people[i].name, people[i].age);
+    }
+
+    // Sort the array of structures by age
+    qsort(people, n, sizeof(struct Person), compare);
+
+    // Print the array after sorting
+    printf("\nAfter sorting by age:\n");
+    for (int i = 0; i < n; i++) {
+        printf("Name: %s, Age: %d\n", people[i].name, people[i].age);
+    }
+
+    return 0;
+}
