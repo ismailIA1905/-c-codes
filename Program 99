@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+// Function to calculate the sum of an arithmetic series
+int sumOfArithmeticSeries(int firstTerm, int commonDifference, int numberOfTerms) {
+    // Formula for the sum of an arithmetic series: S = n/2 * (2a + (n - 1) * d)
+    // where 'a' is the first term, 'd' is the common difference, and 'n' is the number of terms
+    int sum = (numberOfTerms / 2) * (2 * firstTerm + (numberOfTerms - 1) * commonDifference);
+    return sum;
+}
+
+int main() {
+    int firstTerm, commonDifference, numberOfTerms;
+
+    // Read input values from the user
+    printf("Enter the first term of the arithmetic series: ");
+    scanf("%d", &firstTerm);
+    
+    printf("Enter the common difference: ");
+    scanf("%d", &commonDifference);
+    
+    printf("Enter the number of terms: ");
+    scanf("%d", &numberOfTerms);
+
+    // Calculate the sum of the arithmetic series
+    int sum = sumOfArithmeticSeries(firstTerm, commonDifference, numberOfTerms);
+
+    // Display the result
+    printf("The sum of the arithmetic series is: %d\n", sum);
+
+    return 0;
+}
