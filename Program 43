@@ -1,0 +1,25 @@
+#include <stdio.h>
+
+// Recursive function to find the nth Fibonacci number
+long long fibonacci(int n) {
+    if (n <= 1) {
+        return n; // Base case: F(0) = 0, F(1) = 1
+    } else {
+        return fibonacci(n - 1) + fibonacci(n - 2); // Recursive case
+    }
+}
+
+int main() {
+    int n;
+
+    printf("Enter the number of terms in Fibonacci series: ");
+    scanf("%d", &n);
+
+    printf("Fibonacci series up to %d terms: ", n);
+    for (int i = 0; i < n; i++) {
+        printf("%lld ", fibonacci(i)); // Print each Fibonacci number
+    }
+    printf("\n");
+
+    return 0;
+}
