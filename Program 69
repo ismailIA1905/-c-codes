@@ -1,0 +1,41 @@
+#include <stdio.h>
+
+// Define a structure to store student information
+struct Student {
+    char name[50];
+    int age;
+    float marks;
+};
+
+int main() {
+    // Declare a pointer to a structure
+    struct Student *ptr;
+    
+    // Dynamically allocate memory for one student
+    ptr = (struct Student*) malloc(sizeof(struct Student));
+
+    // Check if memory allocation was successful
+    if (ptr == NULL) {
+        printf("Memory allocation failed!\n");
+        return 1;
+    }
+
+    // Read student information from the user
+    printf("Enter student name: ");
+    fgets(ptr->name, sizeof(ptr->name), stdin);  // Read string with spaces
+    printf("Enter student age: ");
+    scanf("%d", &ptr->age);
+    printf("Enter student marks: ");
+    scanf("%f", &ptr->marks);
+
+    // Display the student information
+    printf("\nStudent Information:\n");
+    printf("Name: %s", ptr->name);  // `fgets` stores the newline, so we can display it directly
+    printf("Age: %d\n", ptr->age);
+    printf("Marks: %.2f\n", ptr->marks);
+
+    // Free the dynamically allocated memory
+    free(ptr);
+
+    return 0;
+}
