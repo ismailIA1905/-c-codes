@@ -1,0 +1,53 @@
+#include <stdio.h>
+
+int compareFiles(FILE *file1, FILE *file2) {
+    char ch1, ch2;
+
+    // Read characters from both files and compare them
+    while ((ch1 = fgetc(file1)) != EOF && (ch2 = fgetc(file2)) != EOF) {
+        if (ch1 != ch2) {
+            return 0; // Files are different
+        }
+    }
+
+    // Check if both files have reached EOF at the same time
+    if (fgetc(file1) != EOF || fgetc(file2) != EOF) {
+        return 0; // Files are of different lengths
+    }
+
+    return 1; // Files are identical
+}
+
+int main() {
+    FILE *file1, *file2;
+    char file1Name[100], file2Name[100];
+
+    // Ask user for the file names
+    printf("Enter the name of the first file: ");
+    scanf("%s", file1Name);
+    printf("Enter the name of the second file: ");
+    scanf("%s", file2Name);
+
+    // Open both files
+    file1 = fopen(file1Name, "r");
+    file2 = fopen(file2Name, "r");
+
+    // Check if the files are opened successfully
+    if (file1 == NULL || file2 == NULL) {
+        printf("Error opening one or both files.\n");
+        return 1;
+    }
+
+    // Compare the files
+    if (compareFiles(file1, file2)) {
+        printf("The files are identical.\n");
+    } else {
+        printf("The files are different.\n");
+    }
+
+    // Close the files
+    fclose(file1);
+    fclose(file2);
+
+    return 0;
+}
