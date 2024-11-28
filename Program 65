@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+// Define a union
+union Data {
+    int i;
+    float f;
+    char str[20];
+};
+
+int main() {
+    // Declare a union variable
+    union Data data;
+
+    // Assign an integer value to the union
+    data.i = 10;
+    printf("data.i = %d\n", data.i);
+
+    // Assign a float value to the union
+    data.f = 3.14;
+    printf("data.f = %.2f\n", data.f);
+
+    // Assign a string to the union
+    snprintf(data.str, sizeof(data.str), "Hello, Union!");
+    printf("data.str = %s\n", data.str);
+
+    // Display the values again
+    printf("\nAfter assigning a new value:\n");
+    printf("data.i = %d\n", data.i);  // This will show the last assigned value
+    printf("data.f = %.2f\n", data.f);
+    printf("data.str = %s\n", data.str);  // This will show the string value
+
+    return 0;
+}
