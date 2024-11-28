@@ -1,0 +1,41 @@
+#include <stdio.h>
+
+// Define a structure to store student information
+struct Student {
+    char name[50];
+    int rollNumber;
+    float marks;
+};
+
+// Function to input student information
+void inputStudentInfo(struct Student *student) {
+    printf("Enter student's name: ");
+    fgets(student->name, sizeof(student->name), stdin);  // Read name including spaces
+    
+    printf("Enter roll number: ");
+    scanf("%d", &student->rollNumber);
+
+    printf("Enter marks: ");
+    scanf("%f", &student->marks);
+}
+
+// Function to display student information
+void displayStudentInfo(struct Student student) {
+    printf("\nStudent Information:\n");
+    printf("Name: %s", student.name);  // No need for '&' as we are accessing by value
+    printf("Roll Number: %d\n", student.rollNumber);
+    printf("Marks: %.2f\n", student.marks);
+}
+
+int main() {
+    // Declare a structure variable to store student information
+    struct Student student1;
+
+    // Input student information
+    inputStudentInfo(&student1);
+
+    // Display the stored student information
+    displayStudentInfo(student1);
+
+    return 0;
+}
