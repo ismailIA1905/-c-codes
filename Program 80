@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_WORD_LENGTH 100
+
+int main() {
+    FILE *file;
+    char word[MAX_WORD_LENGTH], fileWord[MAX_WORD_LENGTH];
+    int count = 0;
+
+    // Ask the user for the word to search for
+    printf("Enter the word to find its frequency: ");
+    scanf("%s", word);
+
+    // Open the file in read mode
+    file = fopen("example.txt", "r");
+
+    // Check if the file was opened successfully
+    if (file == NULL) {
+        printf("Could not open the file.\n");
+        return 1;
+    }
+
+    // Read each word from the file and compare it with the user-provided word
+    while (fscanf(file, "%s", fileWord) != EOF) {
+        // Compare the word from the file with the user-input word
+        if (strcmp(fileWord, word) == 0) {
+            count++;
+        }
+    }
+
+    // Display the frequency of the word in the file
+    printf("The word '%s' appears %d times in the file.\n", word, count);
+
+    // Close the file
+    fclose(file);
+
+    return 0;
+}
