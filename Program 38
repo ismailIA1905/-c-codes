@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_CHAR 256 // Maximum number of ASCII characters
+
+void findFrequency(char str[]) {
+    int freq[MAX_CHAR] = {0}; // Array to store frequencies, initialized to 0
+
+    // Calculate frequencies
+    for (int i = 0; str[i] != '\0'; i++) {
+        freq[(unsigned char)str[i]]++;
+    }
+
+    // Print the frequencies
+    printf("Character frequencies:\n");
+    for (int i = 0; i < MAX_CHAR; i++) {
+        if (freq[i] > 0) {
+            printf("'%c': %d\n", i, freq[i]);
+        }
+    }
+}
+
+int main() {
+    char str[100];
+
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+
+    // Remove newline character if present
+    size_t len = strlen(str);
+    if (len > 0 && str[len - 1] == '\n') {
+        str[len - 1] = '\0';
+    }
+
+    findFrequency(str);
+
+    return 0;
+}
