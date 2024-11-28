@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+int main() {
+    FILE *sourceFile, *destinationFile;
+    char ch;
+
+    // Open the source file in read mode
+    sourceFile = fopen("source.txt", "r");
+
+    // Check if the source file was opened successfully
+    if (sourceFile == NULL) {
+        printf("Could not open source file.\n");
+        return 1;
+    }
+
+    // Open the destination file in write mode
+    destinationFile = fopen("destination.txt", "w");
+
+    // Check if the destination file was opened successfully
+    if (destinationFile == NULL) {
+        printf("Could not open destination file.\n");
+        fclose(sourceFile);
+        return 1;
+    }
+
+    // Copy the contents from source file to destination file
+    while ((ch = fgetc(sourceFile)) != EOF) {
+        fputc(ch, destinationFile);  // Write the character to the destination file
+    }
+
+    // Close both files
+    fclose(sourceFile);
+    fclose(destinationFile);
+
+    printf("Contents successfully copied from source.txt to destination.txt.\n");
+
+    return 0;
+}
