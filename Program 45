@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+// Recursive function to reverse the digits of a number
+int reverseNumber(int n, int reversed) {
+    if (n == 0) {
+        return reversed; // Base case: when the number becomes 0, return the reversed number
+    } else {
+        return reverseNumber(n / 10, reversed * 10 + n % 10); // Recur with the number without the last digit
+    }
+}
+
+int main() {
+    int num;
+
+    printf("Enter a number: ");
+    scanf("%d", &num);
+
+    int reversed = reverseNumber(num, 0); // Start with an initial reversed value of 0
+    printf("Reversed number is: %d\n", reversed);
+
+    return 0;
+}
