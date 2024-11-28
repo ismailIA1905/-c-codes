@@ -1,0 +1,35 @@
+#include <stdio.h>
+
+// Define a structure for Address
+struct Address {
+    char street[100];
+    char city[50];
+    char state[50];
+    int zipCode;
+};
+
+// Define a structure for Student
+struct Student {
+    char name[50];
+    int age;
+    struct Address address;  // Nested structure
+};
+
+int main() {
+    // Declare and initialize a Student structure
+    struct Student student1 = {
+        "John Doe", 20,
+        {"123 Elm St.", "Springfield", "Illinois", 62701}
+    };
+
+    // Display student information
+    printf("Student Name: %s\n", student1.name);
+    printf("Age: %d\n", student1.age);
+    printf("Address: %s, %s, %s - %d\n", 
+           student1.address.street, 
+           student1.address.city, 
+           student1.address.state, 
+           student1.address.zipCode);
+
+    return 0;
+}
