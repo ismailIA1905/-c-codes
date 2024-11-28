@@ -1,0 +1,18 @@
+#include <stdio.h>
+
+// Define a structure
+struct MyStruct {
+    int i;
+    float f;
+    char c;
+};
+
+int main() {
+    // Declare a structure variable
+    struct MyStruct myStruct;
+
+    // Find the size of the structure using sizeof
+    printf("Size of structure: %zu bytes\n", sizeof(myStruct));
+
+    return 0;
+}
